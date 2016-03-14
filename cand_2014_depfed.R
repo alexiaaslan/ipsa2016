@@ -1,12 +1,20 @@
 # Candidaturas 2014 - Deputado Federal
 # Alexia e Natalia
 
-# define diretorio
+# USUARIO
+#definir diretorio e nome arquivo
+
 diretorio <- setwd("C:\\Users\\8516201.FFLCH\\Downloads")
+
+nome_arq <- ("consulta_cand_2014.zip")
 
 #ler o arquivo
 
-arquivo <- file.path(getwd(), "consulta_cand_2014.zip")
+arquivo <- file.path(getwd(), nome_arq)
+
+# ano arquivo
+
+ano <- substr(arquivo, (nchar(arquivo)-7), nchar(arquivo)-4)
 
 #criar pasta temporaria
 
@@ -23,10 +31,6 @@ lista.arquivos <- list.files(pasta.temporaria)
 
 # cria o output em forma de dataframe
 dados.output<-data.frame()
-
-# cria o output em forma de dataframe para subset
-dados.cargo<-data.frame()
-
 
 # Loop - para cada i de 1 ate o tamanho da lista
 for (i in 1:length(lista.arquivos)){
@@ -117,13 +121,16 @@ names(dados.output) <- c("DATA_GERACAO",
                          "DESC_SIT_TOT_TURNO")
 
 # subset de deputado federal
-dados.cargoF <- subset (dados.output, DESC_CARGO=="DEPUTADO FEDERAL")
+dados.cargo <- subset (dados.output, DESC_CARGO=="DEPUTADO FEDERAL")
 
 # salvar em arquivo txt
-write.table(dados.cargoF, file.path(getwd(), "candidatos_2014.txt"),
+write.table(dados.cargo, file.path(getwd(), paste("cand", ano, ".txt", sep = "")),
             sep = ";",
             quote = T,
             dec = ",",
             row.names = F,
             col.names = T)
 print ("tarefa completada!")
+
+#excluir pasta temporaria
+unlink("temp_folder", recursive = TRUE)
