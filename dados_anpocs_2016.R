@@ -9,7 +9,4 @@ names(candidatos)
 names(receitas)
 dados <- merge(candidatos, receitas, by = "cpf", all.x = T, all.y = F)
 
-write.table(receitas, file="dados_anpocs.csv", sep=";", row.names=FALSE)
-
-
-table(candidatos[,9])
+write.table(dados, file="dados_anpocs.csv", sep=";", row.names=FALSE)

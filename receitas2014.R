@@ -30,6 +30,6 @@ names(receitas) <- c("cpf", "tipo_receita", "valor")
 #deixando observacoes unicas pra cada candidato por CPF
 receitas <- reshape(receitas, timevar = "tipo_receita", idvar = "cpf", direction = "wide")
 #salvando os arquivos
-write.table(dados, file="receita_candidatos_2014.csv", sep=";", row.names=FALSE)
+#write.table(dados, file="receita_candidatos_2014.csv", sep=";", row.names=FALSE)
 write.table(receitas, file="receitas_2014.csv", sep=";", row.names=FALSE)
 
